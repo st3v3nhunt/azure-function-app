@@ -4,7 +4,16 @@
   "description": "Azure Function app for testing...Azure Functions...",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "coverage-check": "istanbul check-coverage --config .istanbul.yml",
+    "coverage-generate": "npm run istanbul -- cover _mocha -- --exit --recursive",
+    "git-hook": "npm run lint && npm run coverage-generate && npm run coverage-check",
+    "istanbul": "istanbul",
+    "lint": "eslint .",
+    "lint-watch": "esw --watch .",
+    "postrewrite": "npm run git-hook",
+    "precommit": "npm run git-hook",
+    "prepush": "npm run git-hook",
+    "test": "mocha --recursvie test"
   },
   "repository": {
     "type": "git",
@@ -18,5 +27,18 @@
   "homepage": "https://github.com/st3v3nhunt/azure-function-app#readme",
   "dependencies": {
     "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "eslint": "^5.4.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-nhsuk": "^0.16.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-json": "^1.2.1",
+    "eslint-plugin-mocha": "^5.2.0",
+    "eslint-watch": "^4.0.2",
+    "husky": "^0.14.3",
+    "istanbul": "^0.4.5",
+    "mocha": "^5.2.0"
   }
 }

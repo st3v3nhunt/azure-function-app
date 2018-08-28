@@ -1,9 +1,10 @@
-module.exports = function (context, req) {
+module.exports = (context) => {
   context.log('JavaScript HTTP trigger function processed a request.');
+  // eslint-disable-next-line no-param-reassign
   context.res = {
+    body: 'Service Search',
     status: 200,
-    body: 'Service Search'
-  }
+  };
 
   // if (req.query.name || (req.body && req.body.name)) {
   //   context.res = {
